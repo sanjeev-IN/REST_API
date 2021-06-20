@@ -12,7 +12,7 @@ module.exports.createPerson = async (req, res) => {
   else {
     const { name, email, subscription } = req.body;
     const person = new Person({ name, email, subscription });
-    person.user_id = person.email;
+    // person.user_id = person.email;
     const newPerson = await person.save();
     res.status(201).json(newPerson);
   }
@@ -34,7 +34,7 @@ module.exports.updatePerson = async (req, res) => {
       { email: req.params.user_id },
       { name, email, subscription }
     );
-    person.user_id = person.email;
+    // person.user_id = person.email;
     const updatedPerson = await person.save();
     res.send(200).json(updatedPerson);
   }
