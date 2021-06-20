@@ -1,18 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const person = require('../controllers/person');
+const api = require('../controllers/person');
 const catchAsync = require('../utils/catchAsync');
 
 router.route('/')
-  .get(catchAsync(person.index))
-  .post(catchAsync(person.createPerson));
+  .get(catchAsync(api.index))
+  .post(catchAsync(api.createPerson));
 
-router.route('/:id')
-  .get(catchAsync(person.showPerson))
-  .put(catchAsync(person.updatePerson))
-  .delete(catchAsync(person.deletePerson));
-
-
-
+router.route('/:user_id')
+  .get(catchAsync(api.showPerson))
+  .put(catchAsync(api.updatePerson))
+  .delete(catchAsync(api.deletePerson));
 
 module.exports = router;

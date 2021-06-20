@@ -6,6 +6,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const ExpressError = require('./utils/ExpressError');
+const cors = require('cors');
 const dbUrl = process.env.ATLAS_URL;
 
 //Import Routes
@@ -28,6 +29,7 @@ db.once('open', () => {
 const app = express();
 
 // Middlewares used
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json(["application/json", "json"]));
 app.use('/api/people', peopleRoutes);
@@ -44,8 +46,7 @@ app.all('*', (req, res, next) => {
 
 app.use((err, req, res, next) => {
   if (!err.message) { err.message = 'oh NO, Something Went Wrong!' }
-  res.status(err.status || 500);
-  res.json({
+  res.status(err.status || 500).json({
     message: err.message,
     error: err
   });

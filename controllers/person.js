@@ -2,24 +2,25 @@ const Person = require('../models/Person');
 
 module.exports.index = async (req, res) => {
   const people = await Person.find();
-  res.json(people);
+  if (!people) { throw Error('No Details Found') };
+  res.status(200).json(people);
 };
 
 module.exports.createPerson = async (req, res) => {
   if (!req.is('application/json' || 'json')) {
-    throw new Error("Expects 'application/json'");
+    throw Error("Expects 'application/json'");
   }
   else {
     const { name, email, subscription } = req.body;
     const person = new Person({ name, email, subscription });
-    // person.user_id = person.email;
     const newPerson = await person.save();
+    if (!newPerson) { throw Error('Something went wrong while registering new person') };
     res.status(201).json(newPerson);
   }
 };
 
 module.exports.showPerson = async (req, res) => {
-  const person = await Person.find({ email: req.params.user_id });
+  const person = await Person.find({ email: req.params.id });
   if (!person) { res.status(404).send('User do not Exist!') };
   res.json(person);
 };
@@ -30,18 +31,18 @@ module.exports.updatePerson = async (req, res) => {
   }
   else {
     const { name, email, subscription } = req.body;
-    const person = await person.findOneAndUpdate(
-      { email: req.params.user_id },
+    const updatedPerson = await Person.findOneAndUpdate(
+      { email: req.params.id },
       { name, email, subscription }
+      // , { new: true }
     );
-    // person.user_id = person.email;
-    const updatedPerson = await person.save();
-    res.send(200).json(updatedPerson);
+    if (!updatedPerson) throw Error("Something went wrong while updating");;
+    res.status(200).json({ success: true });
   }
 };
 
-
 module.exports.deletePerson = async (req, res) => {
-  const deletedPerson = await Person.findOneAndDelete({ email: req.params.user_id });
-  res.status(204).send(deletedPerson);
+  const deletedPerson = await Person.findOneAndDelete({ email: req.params.id });
+  if (!deletedPerson) throw Error("No user found!");
+  res.status(204).json({ success: true });
 };
