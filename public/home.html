@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+  <title>CRUD</title>
+</head>
+
+<body>
+  <div class="conatiner">
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <h3>Create New User</h3>
+        <form class="add-user-form">
+          <div class="mb-3">
+            <label for="name-value" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name-value" name="name" placeholder="Enter name">
+          </div>
+          <div class="mb-3">
+            <label for="email-value" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email-value" name="email" placeholder="name@example.com">
+          </div>
+          <div class="mb-3">
+            <label for="subscription-value" class="form-label">Subscription Plan</label>
+            <select name="subscription" class="form-select" aria-label="Default select example" id="subscription-value">
+              <option selected value="standard">Standard</option>
+              <option value="gold">Gold</option>
+              <option value="diamond">Diamond</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary">CREATE</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="users-list row">
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+  <script src="javascripts/home.js"></script>
+
+</body>
+
+</html>

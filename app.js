@@ -31,12 +31,12 @@ const app = express();
 // Middlewares used
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json(["application/json", "json"]));
+app.use(express.json(["application/json"]));
 app.use('/api/people', peopleRoutes);
 
 // Routes
 app.get('/', (req, res) => {
-  res.send("We are on HOME Page!")
+  res.sendFile('home.html', { root: "public" })
 });
 
 // Error Handling Middlewares

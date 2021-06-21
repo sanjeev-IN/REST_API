@@ -7,7 +7,7 @@ router.route('/')
   .get(catchAsync(api.index))
   .post(catchAsync(api.createPerson));
 
-router.route('/:user_id')
+router.route('/:id')
   .get(catchAsync(api.showPerson))
   .put(catchAsync(api.updatePerson))
   .delete(catchAsync(api.deletePerson));
