@@ -22,9 +22,8 @@ const renderUsers = users => {
   });
   usersList.innerHTML = output;
 };
-
-const url = 'http://localhost:3000/api/people';
-
+// const url = 'http://localhost:3000/api/people';
+const url = 'https://rest-demo-crud.herokuapp.com/api/people';
 //Method:GET -Read all users
 fetch(url)
   .then(res => res.json())
